@@ -1,0 +1,34 @@
+$primColor:#00b3b3;
+
+#header {
+    background-color: $primColor;
+    grid-column: 1 / 3;
+    grid-row: 1 / 1;
+    position: relative;
+}
+
+#title {
+    font-size: 3em;
+    position: absolute;
+    bottom: 0;
+    font-weight: 700;
+    font-variant: small-caps;
+    margin-left: 5px;
+    text-decoration: none;
+    color: black;
+}
+
+.auth {
+    position: absolute;
+    right: 5%;
+    bottom: 10%;
+    text-decoration: none;
+    color: pink;
+    font-size: 2em;
+    &:active {
+        color: black;
+    }
+    &:hover {
+        text-decoration: underline;
+    }
+}

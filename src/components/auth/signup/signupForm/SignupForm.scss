@@ -1,0 +1,43 @@
+// seems to work for LoginForm as well. Might want to make this a generic form sylesheet
+// and import it to Signup/Login forms.
+$primColor:#00b3b3;
+
+.row {
+    margin: 20px 0px;
+}
+
+label, input {
+    display: inline-block;
+}
+
+label {
+    width: 15%;
+    text-align: right;
+}
+
+input {
+    margin-left: 5px;
+    width: 75%;
+    padding: 1%;
+}
+
+.btns {
+    margin: 0 7%;
+}
+
+@mixin coloredBtn($color) {
+    background-color: $color;
+    color: whitesmoke;
+    box-shadow: 7px 7px 4px #ccc;
+    font-size: 1.2em;
+    width: 100%;
+    height: 30px;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.prim-btn {
+    @include coloredBtn($primColor);
+}
+

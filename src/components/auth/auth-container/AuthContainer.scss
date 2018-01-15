@@ -1,0 +1,23 @@
+$primColor:#00b3b3;
+
+#tabContainer {
+    height: 60%;
+    width: 50%;
+    border: 2px solid $primColor;
+    margin: auto;
+    margin-top: 10%;
+}
+
+#tabHeader {
+    margin-bottom: 10px;
+}
+
+.tab {
+    width: 50%;
+    background-color: whitesmoke;
+    height: 40px;
+    font-size: 1.5em;
+    &:hover {
+        cursor: pointer;
+    }
+}

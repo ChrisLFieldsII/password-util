@@ -1,0 +1,9 @@
+$primColor:whitesmoke;
+
+#main {
+    background-color: $primColor;
+    grid-column: 2 / 2;
+    grid-row: 2 / 2;
+    // padding-left: 5%;
+    position: relative;
+}

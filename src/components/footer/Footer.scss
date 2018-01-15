@@ -1,0 +1,7 @@
+$primColor:#00b3b3;
+
+#footer {
+    background-color: $primColor;
+    grid-column: 1 / span 2;
+    grid-row: 3 / 3;
+}
