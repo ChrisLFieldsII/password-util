@@ -1,5 +1,4 @@
 const express = require('express')
-const morgan = require('morgan')
 const logger = require('./logger')
 const bodyParser = require('body-parser')
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express')
@@ -13,7 +12,6 @@ const app = express()
 
 // mws
 app.use(bodyParser.json())
-app.use(morgan('dev'))
 
 // graphql mws
 app.use('/graphql', graphqlExpress({ schema:schema, context:{User,}}))

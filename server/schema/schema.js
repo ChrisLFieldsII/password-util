@@ -15,6 +15,13 @@ const typeDefs = `
 
     type Mutation {
         createUser(name:String!, email:String!, password:String!):User
+        login(email:String!, password:String!):LoginPayload!
+        deleteAllUsers:Int!
+    }
+
+    type LoginPayload {
+        token:String
+        user:User
     }
 ` // END typeDefs
 
