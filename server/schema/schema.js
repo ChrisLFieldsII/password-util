@@ -23,6 +23,10 @@ const typeDefs = `
         token:String
         user:User
     }
+
+    type Subscription {
+        userCreated:User!
+    }
 ` // END typeDefs
 
 //export schema

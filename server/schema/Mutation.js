@@ -1,7 +1,7 @@
 const logger = require('../logger')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const { APP_SECRET } = require('../utils')
+const { APP_SECRET, pubsub, USER_CREATED } = require('../utils')
 
 module.exports = {
     createUser: (root, args, ctx, info) => {
@@ -14,6 +14,7 @@ module.exports = {
             if (err) logger.error(err)
             else logger.info(`New user ${name} saved!`)
         })
+        pubsub.publish(USER_CREATED, {userCreated:newUser})
         return newUser
     },
     login: async (root, args, ctx, info) => {
