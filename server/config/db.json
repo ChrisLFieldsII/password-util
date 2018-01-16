@@ -1,0 +1,6 @@
+{
+    "url":"mongodb://localhost/password-util",
+    "colls": {
+        "users":"users"
+    }
+}
