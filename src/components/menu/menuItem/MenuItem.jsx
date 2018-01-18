@@ -10,8 +10,6 @@ export default function MenuItem(props) {
     }
 
     return (
-        <div className="menuItem">
-            <Link className="link" to={props.to}>{props.title}</Link>
-        </div>
+        <Link className="link" to={props.to}>{props.title}</Link>
     )
 }

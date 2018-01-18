@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import gql from 'graphql-tag'
+import { graphql, compose } from "react-apollo"; // not using compose...
+import { withRouter } from "react-router-dom"; // allows access to router obj props
 import './LoginForm.scss'
 
 class LoginForm extends Component {
@@ -7,7 +10,7 @@ class LoginForm extends Component {
         super(props)
         this.state = {
             email: '',
-            pw: '',
+            password: '',
         }
 
         this.login = this.login.bind(this)
@@ -20,12 +23,12 @@ class LoginForm extends Component {
                 <form>
                     <div className="row">
                         <label>Email:</label>
-                        <input type="email" name="email" value={this.state.email} onChange={this.inputChange} required autoFocus placeholder="Enter email." />
+                        <input type="email" name="email" value={this.state.email} onChange={this.inputChange} required autoFocus autoComplete="on" placeholder="Enter email." />
                     </div>
 
                     <div className="row">
                         <label>Password:</label>
-                        <input type="password" name="pw" value={this.state.pw} onChange={this.inputChange} required placeholder="Enter password." />
+                        <input type="password" name="password" value={this.state.password} onChange={this.inputChange} required autoComplete="on" placeholder="Enter password." />
                     </div>
 
                     <div className="btns">
@@ -36,9 +39,17 @@ class LoginForm extends Component {
         )
     }
 
-    login() {
-        console.log('clicked login');
+    async login() {
+        console.log('clicked login')
         console.dir(this.state)
+        const { email, password } = this.state
+        const data = await this.props.loginMutation({
+            variables: { email, password }
+        })
+        console.log('Returned LOGIN_MUTATION data:',data)
+        const token = data.data.login.token
+        localStorage.setItem('token', token)
+        this.props.history.push('/pwGen') //redirect
     }
 
     inputChange(event) {
@@ -50,4 +61,17 @@ class LoginForm extends Component {
     }
 }
 
-export default LoginForm
+const LOGIN_MUTATION = gql`
+    mutation LoginMutation($email:String!, $password:String!) {
+        login(email:$email, password:$password) {
+            token
+            user {
+                id
+                name
+                email
+            }
+        }
+    }
+`
+
+export default graphql(LOGIN_MUTATION, {name:'loginMutation'})(withRouter(LoginForm))

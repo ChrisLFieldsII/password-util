@@ -17,6 +17,7 @@ class AuthContainer extends Component {
         let body = null
         if (this.state.selectedTab === 'login') body = <Login />
         else body = <Signup />
+
         return (
             <div id="tabContainer">
                 <div id="tabHeader">

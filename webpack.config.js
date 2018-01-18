@@ -9,7 +9,7 @@ module.exports = {
     entry: './src/index.jsx',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
     },
     module: {
         rules: [
@@ -26,5 +26,11 @@ module.exports = {
     },
     devServer: {
         historyApiFallback: true, // allows refresh without GET error
+        proxy: {
+            "/graphql": {
+                target: 'http://localhost:5000',
+                secure: false
+            }
+        },
     }
 }

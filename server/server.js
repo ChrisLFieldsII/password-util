@@ -17,14 +17,20 @@ const port = 5000
 
 // mws
 app.use(bodyParser.json())
+app.use(require('cors')({methods:'GET,POST'})) // enable cors for dev
 
 // graphql mws
 app.use('/graphql', graphqlExpress({ schema:schema, context:{User,}}))
 app.get('/graphiql', graphiqlExpress({ endpointURL:'/graphql', subscriptionsEndpoint:`ws://localhost:${port}/subscriptions` }))
+
+// error handler
+app.use((err, req, res, next) => {
+    logger.error(err)
+    res.send('Error occurred')
+})
 
 const server = createServer(app) // wrap server to set up WebSocket to listen to GraphQL subs
 server.listen(port, () => {
     logger.info(`Magic happening on port ${port}`)
     new SubscriptionServer({ execute, subscribe, schema }, { server:server, path:'/subscriptions' })
 })
-

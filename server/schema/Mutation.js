@@ -36,12 +36,8 @@ module.exports = {
         return loginPayload
     },
     deleteAllUsers: async (root, args, ctx, info) => {
-        let numDocsRemoved = 0
-        await ctx.User.remove({}, (err, docs) => {
-            if (err) logger.error(err)
-            logger.info('# docs removed:',docs.result.n)
-            numDocsRemoved = docs.result.n
-        })
-        return numDocsRemoved
+        const data = await ctx.User.remove({})
+        logger.debug('# docs removed:',data.result.n)
+        return data.result.n
     },
 }
