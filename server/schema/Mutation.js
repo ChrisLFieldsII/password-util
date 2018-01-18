@@ -30,7 +30,7 @@ module.exports = {
             }
             else {
                 logger.error(`User ${email} failed to login`)
-                loginPayload = {token:'N/A'}
+                loginPayload = {token:'N/A', user:null}
             }
         })
         return loginPayload

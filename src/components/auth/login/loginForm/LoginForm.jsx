@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import gql from 'graphql-tag'
 import { graphql, compose } from "react-apollo"; // not using compose...
 import { withRouter } from "react-router-dom"; // allows access to router obj props
+import { connect } from "react-redux";
+import { userLoggedIn } from "../../../../redux/actions";
 import './LoginForm.scss'
 
 class LoginForm extends Component {
@@ -41,15 +43,17 @@ class LoginForm extends Component {
 
     async login() {
         console.log('clicked login')
-        console.dir(this.state)
         const { email, password } = this.state
         const data = await this.props.loginMutation({
             variables: { email, password }
         })
         console.log('Returned LOGIN_MUTATION data:',data)
+        const user = data.data.login.user
         const token = data.data.login.token
         localStorage.setItem('token', token)
         this.props.history.push('/pwGen') //redirect
+        // dispatch to redux store
+        this.props.dispatchLogin(user, token)
     }
 
     inputChange(event) {
@@ -59,6 +63,8 @@ class LoginForm extends Component {
 
         this.setState({[name]:value})
     }
+
+
 }
 
 const LOGIN_MUTATION = gql`
@@ -74,4 +80,10 @@ const LOGIN_MUTATION = gql`
     }
 `
 
-export default graphql(LOGIN_MUTATION, {name:'loginMutation'})(withRouter(LoginForm))
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatchLogin: (user, token) => dispatch(userLoggedIn(user, token))
+    }
+}
+
+export default graphql(LOGIN_MUTATION, {name:'loginMutation'})(connect(null, mapDispatchToProps)(withRouter(LoginForm)))

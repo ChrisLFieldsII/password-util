@@ -7,15 +7,24 @@ $primColor:#00b3b3;
     position: relative;
 }
 
-#title {
+%text {
     font-size: 3em;
-    position: absolute;
-    bottom: 0;
     font-weight: 700;
     font-variant: small-caps;
+    color: whitesmoke;
+}
+
+#title {
+    @extend %text;
+    position: absolute;
+    bottom: 8%;
     margin-left: 5px;
     text-decoration: none;
-    color: black;
+}
+
+#welcome {
+    @extend %text;
+    text-align: center;
 }
 
 .auth {
