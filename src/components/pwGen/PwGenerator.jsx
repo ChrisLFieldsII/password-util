@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
+import PwGenForm from "./pwGenForm/PwGenForm";
 import './PwGenerator.scss'
 
 class PwGenerator extends Component {
     render() {
         return (
-            <div>
-                <h1>Pw PwGenerator</h1>
+            <div id="pwGen">
+                <h1>Password Generator</h1>
+                <PwGenForm />
             </div>
         )
     }

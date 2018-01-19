@@ -3,3 +3,9 @@ store token in localstorage
 store authenticated user (if one) in context object for all resolvers
 verify token in req.auth header and retrieve email from token "audience"
     to retrieve user from db and set that user in context obj
+
+SignupForm.scss handles all form styles
+
+if no one is signed in and routed to pwGen/pwVault, indicate that they should sign in to see their data.
+
+give options for generating a password like include symbols, etc

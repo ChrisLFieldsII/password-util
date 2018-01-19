@@ -20,6 +20,14 @@ input {
     width: 75%;
     padding: 1%;
 }
+input[type="number"] {
+    margin-left: 5px;
+    width: 7%;
+    padding: 1%;
+}
+input[name="generatedPw"] {
+    margin-top: 10%;
+}
 
 .btns {
     margin: 0 7%;
